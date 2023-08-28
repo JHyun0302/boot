@@ -15,3 +15,19 @@
     4. 외부 설정
     5. 모니터링 & 관리 기능
 
+- 정리 : `spring boot` 시작
+    - 빌드와 배포
+        - 일반 Jar : Jar 파일 생성 시 Jar 파일 중복 불가
+            - 외부 라이브러리 추가 불가능
+        - Fat Jar : Jar 파일 생성 시 외부 라이브러리 `.class` 형태로 추가
+            - 단점 1 : 어떤 라이브러리가 포함되어 있는지 확인 어렵
+            - 단점 2 : 파일명 중복 해결 불가
+        - Executable Jar : `스프링 부트`에서 새롭게 정의한 Jar
+            - Fat Jar 단점 모두 보완
+            - 실행 과정
+                1. `java -jar xxx.jar `
+                2. `MANIFEST.MF ` 인식 (메인 메서드 실행하는 파일)
+                3. `JarLauncher.main() ` 실행
+                    - `BOOT-INF/classes/ ` 안에 있는 jar 파일 읽음 (외부 라이브러리)
+                    - `BOOT-INF/lib/ `  안에 있는 jar 파일 읽음 (외부 라이브러리)
+                4. `BootApplication.main() ` 메인 메서드 실행
